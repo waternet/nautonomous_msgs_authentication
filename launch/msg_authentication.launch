@@ -1,0 +1,13 @@
+<launch>
+	<arg name="rosbag_prefix_url" default="/tmp"/>
+
+	<arg name="msg_auth_service" default="msg_authentication"/>
+    <arg name="msg_mac_generation_service" default="msg_mac_generation"/>
+
+	<node name="msg_authentication_node" pkg="nautonomous_msgs_authentication" type="msg_authentication_node" output="screen">
+		<param name="secret_file" value="/var/ssl/secret/nautonomous1.secret"/>
+
+		<remap from="msg_auth" to="$(arg msg_auth_service)"/>
+        <remap from="mac_gen" to="$(arg msg_mac_generation_service)"/>
+	</node>
+</launch>
